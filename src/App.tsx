@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import todoService from './services/todos'
 import { Todo } from './types/todo'
+import TodoList from './components/TodoList'
 
 function App () {
   const [todos, setTodos] = useState<Todo[]>([])
@@ -34,7 +35,7 @@ function App () {
     })
   }
 
-  const handleItemClick = (todo: Todo) => () => {
+  const handleItemClick = (todo: Todo) => {
     toggleLocalDone(todo)
     todoService
       .setDone(todo.id, !todo.is_done)
@@ -45,48 +46,34 @@ function App () {
 
   return (
     <div
-      max-w="screen-sm"
+      max-w="md"
       m="x-auto"
     >
-      <h2>Todo</h2>
-      <ul m="b-6">
-        {notDoneTodos.map((todo) => (
-          <li key={todo.id}>
-            <button
-              className="bg-transparent"
-              onClick={handleItemClick(todo)}
-            >
-              ☐
-            </button>
-             &nbsp;
-            {todo.content}
-          </li>
-        ))}
-      </ul>
+      <h2 font="bold" text="lg" m="b-2">Todo</h2>
+      <TodoList
+        items={notDoneTodos}
+        onItemClick={handleItemClick}
+      />
+
+      <div m="b-6">
+        <button
+          border="~"
+          bg="transparent"
+          w="full"
+        >
+          +
+        </button>
+      </div>
 
       {
         !!doneTodos.length && (
-          <h2>Done</h2>
+          <h2 font="bold" text="lg" m="b-2">Done</h2>
         )
       }
-      <ul>
-        {doneTodos.map((todo) => (
-          <li key={todo.id}>
-            <button
-              className="bg-transparent"
-              onClick={handleItemClick(todo)}
-            >
-              🗹
-            </button>
-             &nbsp;
-            <span
-              className="line-through"
-            >
-              {todo.content}
-             </span>
-          </li>
-        ))}
-      </ul>
+      <TodoList
+        items={doneTodos}
+        onItemClick={handleItemClick}
+      />
     </div>
   )
 }
