@@ -93,7 +93,7 @@ function App () {
         />
         <button
           type="button"
-          bg="blue-400 hover:blue-500"
+          bg="blue-500 hover:blue-600"
           text="slate-800"
           p="2"
           rounded="r"
