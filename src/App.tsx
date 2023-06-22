@@ -6,39 +6,18 @@ import TodoList from './components/TodoList'
 function App () {
   const [todos, setTodos] = useState<Todo[]>([])
 
-  const loadData = useCallback(() => {
-    todoService
-      .list()
-      .then(data => {
-        setTodos(data)
-      })
+  const loadData = useCallback(async () => {
+    const data = await todoService.getAll()
+    setTodos(data)
   }, [])
 
   useEffect(() => {
     loadData()
   }, [loadData])
 
-  const toggleLocalDone = (todo: Todo) => {
-    setTodos(prev => {
-      const foundIndex = prev.findIndex(item => item.id === todo.id)
-
-      if (foundIndex === -1) return prev
-
-      return [
-        ...prev.slice(0, foundIndex),
-        {
-          ...prev[foundIndex],
-          is_done: !todo.is_done
-        },
-        ...prev.slice(foundIndex + 1)
-      ]
-    })
-  }
-
-  const handleItemClick = (todo: Todo) => {
-    toggleLocalDone(todo)
-    todoService
-      .setDone(todo.id, !todo.is_done)
+  const handleItemClick = async (todo: Todo) => {
+    await todoService.setIsDone(todo.id, !todo.is_done)
+    loadData()
   }
 
   const notDoneTodos = todos.filter(t => !t.is_done)
@@ -46,7 +25,7 @@ function App () {
 
   return (
     <div
-      max-w="md"
+      max-w="sm"
       m="x-auto"
     >
       <h2 font="bold" text="lg" m="b-2">Todo</h2>

@@ -13,6 +13,7 @@ export default function TodoItem ({ value, onItemClick }: Props) {
   return (
     <li m="b-2">
       <button
+        type="button"
         bg="transparent"
         text="lg"
         onClick={handleItemClick(value)}
@@ -25,6 +26,12 @@ export default function TodoItem ({ value, onItemClick }: Props) {
       >
         {value.content}
       </span>
+      <button
+        type="button"
+        bg="transparent"
+      >
+        x
+      </button>
     </li>
   )
 }
