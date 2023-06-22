@@ -2,13 +2,15 @@ type Options = {
   dbName: string
   dbVersion: number
   storeName: string
+  initialData: any[]
 }
 
 export const openDB = (options: Options) => new Promise<IDBDatabase>((resolve, reject) => {
   const {
     dbName,
     dbVersion,
-    storeName
+    storeName,
+    initialData
   } = options
 
   const request = window.indexedDB.open(dbName, dbVersion)
@@ -22,7 +24,13 @@ export const openDB = (options: Options) => new Promise<IDBDatabase>((resolve, r
     const objectStoreNames = db.objectStoreNames
 
     if (!objectStoreNames.contains(storeName)) {
-      db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true })
+      const store = db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true })
+
+      if (initialData.length) {
+        initialData.forEach(data => {
+          store.add(data)
+        })
+      }
     }
   }
 

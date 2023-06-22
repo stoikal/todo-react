@@ -24,17 +24,23 @@ export default function TodoItem ({ value, onItemClick, onItemDelete }: Props) {
             : <div className="i-ph-circle-bold">no</div>
         }
       </button>
-      <span
+      <div
         className={value.is_done ? 'line-through' : ''}
         flex="grow-1"
         p="x-2"
         truncate="~"
       >
-        {value.title}
-      </span>
+        <span
+          role="button"
+          onClick={() => onItemClick(value)}
+        >
+          {value.title}
+        </span>
+      </div>
       <button
         type="button"
         bg="transparent"
+        p="x-2"
         onClick={() => onItemDelete(value)}
       >
         <div className="i-ph-trash"></div>

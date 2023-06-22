@@ -6,7 +6,12 @@ type Mode = 'readonly' | 'readwrite'
 const DB_OPTIONS = {
   dbName: 'todoDb',
   dbVersion: 1,
-  storeName: 'todoStore'
+  storeName: 'todoStore',
+  initialData: [
+    { title: 'learn react', parent: null, is_done: true },
+    { title: 'learn vue', parent: null, is_done: false },
+    { title: 'learn svelte', parent: null, is_done: false }
+  ]
 }
 
 const getTodoStore = async (mode: Mode = 'readonly') => {
