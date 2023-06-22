@@ -15,7 +15,7 @@ const DB_OPTIONS = {
 }
 
 const getTodoStore = async (mode: Mode = 'readonly') => {
-  const db = await openDB(DB_OPTIONS)
+  const db = await openDB<Omit<Todo, 'id'>>(DB_OPTIONS)
 
   const transaction = db.transaction([DB_OPTIONS.storeName], mode)
   const todoStore = transaction.objectStore(DB_OPTIONS.storeName)

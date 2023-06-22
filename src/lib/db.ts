@@ -1,11 +1,11 @@
-type Options = {
+type Options<T> = {
   dbName: string
   dbVersion: number
   storeName: string
-  initialData: any[]
+  initialData: T[]
 }
 
-export const openDB = (options: Options) => new Promise<IDBDatabase>((resolve, reject) => {
+export const openDB = <T>(options: Options<T>) => new Promise<IDBDatabase>((resolve, reject) => {
   const {
     dbName,
     dbVersion,
