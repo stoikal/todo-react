@@ -8,9 +8,9 @@ const DB_OPTIONS = {
   dbVersion: 1,
   storeName: 'todoStore',
   initialData: [
-    { title: 'learn react', parent: null, is_done: true },
-    { title: 'learn vue', parent: null, is_done: false },
-    { title: 'learn svelte', parent: null, is_done: false }
+    { title: 'make todo app', parent: null, is_done: true },
+    { title: 'deploy to github pages', parent: null, is_done: false },
+    { title: 'take a nap', parent: null, is_done: false }
   ]
 }
 
