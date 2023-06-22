@@ -77,7 +77,6 @@ export default {
       const request = store.delete(id)
 
       request.onsuccess = () => {
-        console.log('===~request~===', request)
         resolve()
       }
       request.onerror = () => reject(request.error)

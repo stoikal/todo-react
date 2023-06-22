@@ -1,6 +1,6 @@
 export type Todo = {
   id: number
-  content: string
+  title: string
   is_done: boolean
   parent: number | null
 }

@@ -9,7 +9,7 @@ type Props = {
 
 export default function TodoList ({ items, onItemClick, onItemDelete }: Props) {
   return (
-    <ul>
+    <ul m="b-8">
       {items.map((todo) => (
         <TodoItem
           key={todo.id}

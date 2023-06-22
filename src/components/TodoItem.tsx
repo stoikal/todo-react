@@ -30,7 +30,7 @@ export default function TodoItem ({ value, onItemClick, onItemDelete }: Props) {
         p="x-2"
         truncate="~"
       >
-        {value.content}
+        {value.title}
       </span>
       <button
         type="button"
