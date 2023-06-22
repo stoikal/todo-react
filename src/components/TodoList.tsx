@@ -4,20 +4,18 @@ import TodoItem from './TodoItem'
 type Props = {
   items: Todo[]
   onItemClick: (todo: Todo) => void
+  onItemDelete: (todo: Todo) => void
 }
 
-export default function TodoList ({ items, onItemClick }: Props) {
-  const handleItemClick = (todo: Todo) => {
-    onItemClick(todo)
-  }
-
+export default function TodoList ({ items, onItemClick, onItemDelete }: Props) {
   return (
     <ul>
       {items.map((todo) => (
         <TodoItem
           key={todo.id}
           value={todo}
-          onItemClick={handleItemClick}
+          onItemClick={onItemClick}
+          onItemDelete={onItemDelete}
         />
       ))}
     </ul>

@@ -66,7 +66,21 @@ export default {
     })
   },
 
-  async setIsDone (id: number, isDone: boolean) {
+  async setIsDone (id: IDBValidKey, isDone: boolean) {
     return this.patch(id, { is_done: isDone })
+  },
+
+  async delete (id: IDBValidKey) {
+    const store = await getTodoStore('readwrite')
+
+    return new Promise<void>((resolve, reject) => {
+      const request = store.delete(id)
+
+      request.onsuccess = () => {
+        console.log('===~request~===', request)
+        resolve()
+      }
+      request.onerror = () => reject(request.error)
+    })
   }
 }

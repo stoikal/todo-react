@@ -20,6 +20,20 @@ function App () {
     loadData()
   }
 
+  const handleItemDelete = async (todo: Todo) => {
+    await todoService.delete(todo.id)
+    loadData()
+  }
+
+  const handleCreate = async () => {
+    await todoService.create({
+      content: 'learn svelte',
+      parent: null,
+      is_done: false
+    })
+    loadData()
+  }
+
   const notDoneTodos = todos.filter(t => !t.is_done)
   const doneTodos = todos.filter(t => t.is_done)
 
@@ -32,6 +46,7 @@ function App () {
       <TodoList
         items={notDoneTodos}
         onItemClick={handleItemClick}
+        onItemDelete={handleItemDelete}
       />
 
       <div m="b-6">
@@ -39,6 +54,7 @@ function App () {
           border="~"
           bg="transparent"
           w="full"
+          onClick={handleCreate}
         >
           +
         </button>
@@ -52,6 +68,7 @@ function App () {
       <TodoList
         items={doneTodos}
         onItemClick={handleItemClick}
+        onItemDelete={handleItemDelete}
       />
     </div>
   )
