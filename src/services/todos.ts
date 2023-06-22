@@ -9,7 +9,7 @@ const DB_OPTIONS = {
   storeName: 'todoStore',
   initialData: [
     { title: 'make todo app', parent: null, is_done: true },
-    { title: 'deploy to github pages', parent: null, is_done: false },
+    { title: 'deploy to github pages', parent: null, is_done: true },
     { title: 'take a nap', parent: null, is_done: false }
   ]
 }
