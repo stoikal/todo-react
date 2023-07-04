@@ -43,7 +43,7 @@ export default function TodoItem ({ value, onItemClick, onItemDelete }: Props) {
         p="x-2"
         onClick={() => onItemDelete(value)}
       >
-        <div className="i-ph-trash"></div>
+        <div className="i-ph-trash">delete</div>
       </button>
     </li>
   )
